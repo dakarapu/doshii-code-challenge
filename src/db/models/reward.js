@@ -1,24 +1,4 @@
-//import mongoose from "mongoose";
-//import db from "../index";
-import mysql from "mysql";
-import _ from "lodash";
-import config from "config";
-
-const { host, username, password, dbName } = config.get("database");
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "doshii"
-});
-
-db.connect(err => {
-  if (err) {
-    throw err;
-  }
-  console.log("MySql Connected...");
-});
+import db from "../connection";
 
 export async function createReward(obj) {
   return new Promise((resolve, reject) => {
