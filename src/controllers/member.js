@@ -2,6 +2,7 @@ import {
   createMember,
   createMemberReward,
   getMembers,
+  getRewardsByMember,
   getMemberById,
   updateMember,
   deleteMember
@@ -30,29 +31,21 @@ export async function getAll() {
 export async function getMember(id) {
   try {
     let member = await getMemberById(id);
+    let rewards = await getRewardsByMember(id);
+    //return member;
     let memberData = {};
     if (member && member.length > 0) {
-      memberData.member_id = member[0].member_id;
+      memberData.member_id = member[0].id;
       memberData.member_name = member[0].member_name;
-      memberData.rewards = [];
-      member.map(v => {
-        memberData.rewards.push(v.reward_name);
-      });
+      memberData.rewards = rewards;
+    } else {
+      return member;
     }
     return memberData;
   } catch (e) {
     return e;
   }
 }
-
-// export async function checkIfMemberExists(id) {
-//   try {
-//     let member = await getMemberByEmail(id);
-//     return member;
-//   } catch (e) {
-//     return e;
-//   }
-// }
 
 export async function update(id, obj) {
   try {

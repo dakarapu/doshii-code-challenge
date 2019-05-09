@@ -26,7 +26,6 @@ router.get(
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
     const user = await memberController.getMember(id);
-    console.log("getMemberById ####################", user);
     if (user !== undefined) {
       res.status(200).send(user);
     } else {
