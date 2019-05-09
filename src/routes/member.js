@@ -86,35 +86,16 @@ router.post(
   })
 );
 
-// // user update router
-// router.put(
-//   "/members/:id",
-//   asyncCallbackMiddleware(async (req, res) => {
-//     let error = Schemas.memberObjValidation(req.body);
-//     if (error !== null) {
-//       return res
-//         .status(400)
-//         .send(`${error.name} : ${error.details[0].message}`);
-//     }
-//     let id = parseInt(req.params.id);
-//     let obj = req.body;
-//     let result = await memberController.update(id, obj);
-//     if (!result)
-//       return res.status(404).send("No user found with requested userId");
-//     return res.status(200).send(result);
-//   })
-// );
-
-// // user delete router
-// router.delete(
-//   "/members/:id",
-//   asyncCallbackMiddleware(async (req, res) => {
-//     let id = parseInt(req.params.id);
-//     let result = await memberController.remove(id);
-//     if (!result)
-//       return res.status(404).send("No user found with requested userId");
-//     return res.status(200).send(result);
-//   })
-// );
+// user delete router
+router.delete(
+  "/members/:id",
+  asyncCallbackMiddleware(async (req, res) => {
+    let id = parseInt(req.params.id);
+    let result = await memberController.remove(id);
+    if (!result)
+      return res.status(404).send("No user found with requested userId");
+    return res.status(200).send(result);
+  })
+);
 
 export default router;

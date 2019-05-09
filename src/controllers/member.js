@@ -5,7 +5,8 @@ import {
   getRewardsByMember,
   getMemberById,
   updateMember,
-  deleteMember
+  deleteMember,
+  deleteRewardsByMember
 } from "../db/models/member";
 
 export async function create(obj) {
@@ -59,6 +60,7 @@ export async function update(id, obj) {
 export async function remove(id) {
   try {
     let member = await deleteMember(id);
+    let reward = await deleteRewardsByMember(id);
     return member;
   } catch (e) {
     return e;

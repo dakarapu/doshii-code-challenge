@@ -80,6 +80,23 @@ export async function getRewardsByMember(id) {
 }
 
 export async function deleteMember(id) {
-  const result = await Member.findOneAndRemove({ memberId: id });
-  return result;
+  return new Promise((resolve, reject) => {
+    let sql = `DELETE FROM member WHERE id=${id}`;
+    //let post = parseInt(req.params.id);
+    db.query(sql, (err, res) => {
+      if (err) reject(err);
+      console.log(res);
+      resolve(res);
+    });
+  });
+}
+
+export async function deleteRewardsByMember(id) {
+  return new Promise((resolve, reject) => {
+    let sql = `DELETE FROM member_reward WHERE member_id=${id}`;
+    db.query(sql, (err, res) => {
+      if (err) reject(err);
+      resolve(res);
+    });
+  });
 }
