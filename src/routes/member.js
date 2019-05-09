@@ -50,11 +50,12 @@ router.post(
       );
     }
     let member = await memberController.create(req.body);
-    if (member !== undefined) {
-      return res.status(201).send(member);
-    } else {
-      return res.status(400).send("User already exists with this ID.");
-    }
+    return res.status(201).send(member);
+    // if (member !== undefined) {
+    //   return res.status(201).send(member);
+    // } else {
+    //   return res.status(400).send("User already exists with this ID.");
+    // }
   })
 );
 

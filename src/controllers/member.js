@@ -2,9 +2,7 @@ import {
   createMember,
   getMembers,
   getMemberById,
-  //getMemberByEmail,
   updateMember,
-  //searchAndUpdateMember,
   deleteMember
 } from "../db/models/member";
 

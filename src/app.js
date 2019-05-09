@@ -9,15 +9,15 @@ import routes from "./routes/index";
 
 const app = express();
 
-process.on("uncaughtException", ex => {
-  console.log("Got Uncaught Exception");
-  process.exit(1);
-});
+// process.on("uncaughtException", ex => {
+//   console.log("Got Uncaught Exception");
+//   process.exit(1);
+// });
 
-process.on("unhandledRejection", ex => {
-  console.log("Got Unhandled Rejection");
-  process.exit(1);
-});
+// process.on("unhandledRejection", ex => {
+//   console.log("Got Unhandled Rejection");
+//   process.exit(1);
+// });
 
 //const { host, username, password, db } = config.get("database");
 

@@ -1,19 +1,18 @@
 //import mongoose from "mongoose";
-import mysql from "mysql2/promise";
+import mysql from "mysql";
 import config from "config";
 
 const { host, username, password, dbName } = config.get("database");
 
-const db = async function() {
+const db = function() {
   try {
-    const connection = await mysql.createPool({
+    const connection = mysql.createConnection({
       host: host,
       user: username,
       password: "",
       database: dbName
     });
-
-    const promisePool = pool.promise();
+    connection.connect();
 
     // let createDB = await connection.query(
     //   "CREATE DATABASE IF NOT EXISTS doshii"
@@ -28,7 +27,7 @@ const db = async function() {
     //   "CREATE TABLE IF NOT EXISTS member_reward (id int NOT NULL AUTO_INCREMENT,member_id INT NOT NULL,reward_id INT NOT NULL,PRIMARY KEY (id),FOREIGN KEY (member_id) REFERENCES member(id),FOREIGN KEY (reward_id) REFERENCES reward(id))"
     // );
 
-    return promisePool;
+    return connection;
   } catch (e) {
     throw e;
   }
