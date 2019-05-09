@@ -7,15 +7,15 @@ import {
 } from "../db/models/reward";
 
 export async function create(obj) {
-  let member = await createReward(obj);
-  return member;
+  let reward = await createReward(obj);
+  return reward;
 }
 
 export async function getAll() {
   try {
-    let members = await getRewards();
-    if (members.length < 1) return "No members available";
-    return members;
+    let rewards = await getRewards();
+    if (rewards.length < 1) return "No rewards available";
+    return rewards;
   } catch (e) {
     return e;
   }
@@ -23,8 +23,8 @@ export async function getAll() {
 
 export async function getReward(id) {
   try {
-    let member = await getRewardById(id);
-    return member;
+    let reward = await getRewardById(id);
+    return reward;
   } catch (e) {
     return e;
   }
@@ -32,8 +32,8 @@ export async function getReward(id) {
 
 // export async function checkIfRewardExists(id) {
 //   try {
-//     let member = await getRewardByEmail(id);
-//     return member;
+//     let reward = await getRewardByEmail(id);
+//     return reward;
 //   } catch (e) {
 //     return e;
 //   }
@@ -41,8 +41,8 @@ export async function getReward(id) {
 
 export async function update(id, obj) {
   try {
-    let member = await updateReward(id, obj);
-    return member;
+    let reward = await updateReward(id, obj);
+    return reward;
   } catch (e) {
     return e;
   }
@@ -50,8 +50,8 @@ export async function update(id, obj) {
 
 export async function remove(id) {
   try {
-    let member = await deleteReward(id);
-    return member;
+    let reward = await deleteReward(id);
+    return reward;
   } catch (e) {
     return e;
   }

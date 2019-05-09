@@ -22,7 +22,7 @@ db.connect(err => {
 
 export async function createReward(obj) {
   return new Promise((resolve, reject) => {
-    let post = { id: obj.id, member_name: obj.name };
+    let post = { id: obj.id, reward_name: obj.name };
     let sql = "INSERT INTO reward SET ?";
     db.query(sql, post, (err, result) => {
       if (err) reject(err);
@@ -34,26 +34,26 @@ export async function createReward(obj) {
 
 // find all member by query
 export async function getRewards() {
-  try {
-    let sql = "SELECT * FROM reward";
-    const result = await db.query(sql);
-    if (!result) return { message: "No records found" };
-    return result;
-  } catch (e) {
-    return e.error;
-  }
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * FROM reward`;
+    db.query(sql, (err, result) => {
+      if (err) reject(err);
+      console.log(result);
+      resolve(result);
+    });
+  });
 }
 
 // find a member by ID
 export async function getRewardById(id) {
-  try {
-    let sql = `SELECT * FROM reward WHERE id = ${id}`;
-    const result = await db.query(sql);
-    if (!result) return { message: "No member found" };
-    //return result;
-  } catch (e) {
-    return e.error;
-  }
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * FROM reward WHERE id = ${id} limit 1`;
+    db.query(sql, (err, result) => {
+      if (err) reject(err);
+      console.log(result);
+      resolve(result);
+    });
+  });
 }
 
 export async function deleteReward(id) {

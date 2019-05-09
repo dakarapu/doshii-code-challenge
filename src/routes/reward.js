@@ -9,13 +9,13 @@ let router = express.Router();
 router.get(
   "/rewards",
   asyncCallbackMiddleware(async (req, res) => {
-    let members = await rewardController.getAll();
-    if (members === undefined) {
+    let rewards = await rewardController.getAll();
+    if (rewards === undefined) {
       res.status(500).send("Internal Server Error.");
-    } else if (members && members.length < 1) {
-      res.status(404).send(`No members available.`);
+    } else if (rewards && rewards.length < 1) {
+      res.status(404).send(`No rewards available.`);
     } else {
-      res.status(200).send(members);
+      res.status(200).send(rewards);
     }
   })
 );
@@ -25,8 +25,8 @@ router.get(
   "/rewards/:id",
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
-    const user = await rewardController.getMember(id);
-    console.log("getMemberById ####################", user);
+    const user = await rewardController.getReward(id);
+    console.log("getRewardById ####################", user);
     if (user !== undefined) {
       res.status(200).send(user);
     } else {
@@ -40,7 +40,7 @@ router.post(
   "/rewards",
   asyncCallbackMiddleware(async (req, res) => {
     console.log("This is USER Req Body:", req.body);
-    let error = Schemas.memberObjValidation(req.body);
+    let error = Schemas.rewardObjValidation(req.body);
     if (error !== null) {
       return (
         res
@@ -49,10 +49,10 @@ router.post(
           .send(error)
       );
     }
-    let member = await rewardController.create(req.body);
-    return res.status(201).send(member);
-    // if (member !== undefined) {
-    //   return res.status(201).send(member);
+    let reward = await rewardController.create(req.body);
+    return res.status(201).send(reward);
+    // if (reward !== undefined) {
+    //   return res.status(201).send(reward);
     // } else {
     //   return res.status(400).send("User already exists with this ID.");
     // }
