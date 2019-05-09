@@ -46,7 +46,6 @@ router.get(
 router.post(
   "/members",
   asyncCallbackMiddleware(async (req, res) => {
-    console.log("This is USER Req Body:", req.body);
     let error = Schemas.memberObjValidation(req.body);
     if (error !== null) {
       return res.status(400).send(error);
@@ -64,27 +63,20 @@ router.post(
 router.post(
   "/members/:memberId/rewards/:rewardId",
   asyncCallbackMiddleware(async (req, res) => {
-    console.log("This is USER Req Body:", req.params);
     let reqObj = {
       memberId: req.params.memberId,
       rewardId: req.params.rewardId
     };
     let error = Schemas.memberRewardObjValidation(reqObj);
     if (error !== null) {
-      return (
-        res
-          .status(400)
-          //.send(`${error.name} : ${error.details[0].message}`);
-          .send(error)
-      );
+      return res.status(400).send(error);
     }
     let member = await memberController.addRewardToMember(reqObj);
-    return res.status(201).send(member);
-    // if (member !== undefined) {
-    //   return res.status(201).send(member);
-    // } else {
-    //   return res.status(400).send("User already exists with this ID.");
-    // }
+
+    if (member && member.hasOwnProperty("errorMessage")) {
+      return res.status(500).send(member.errorMessage);
+    }
+    return res.status(201).send("Successfully added Reward to the Member.");
   })
 );
 
@@ -94,8 +86,9 @@ router.delete(
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
     let result = await memberController.remove(id);
-    if (!result)
+    if (result && result.affectedRows === 0) {
       return res.status(404).send("No user found with requested userId");
+    }
     return res.status(200).send(result);
   })
 );

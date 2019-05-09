@@ -6,7 +6,6 @@ export async function createMember(obj) {
     let sql = "INSERT INTO member SET ?";
     db.query(sql, post, (err, result) => {
       if (err) reject(err);
-      console.log(result);
       resolve(result);
     });
   });
@@ -18,7 +17,6 @@ export async function createMemberReward(obj) {
     let sql = "INSERT INTO member_reward SET ?";
     db.query(sql, post, (err, result) => {
       if (err) reject(err);
-      console.log(result);
       resolve(result);
     });
   });
@@ -30,7 +28,6 @@ export async function getMembers() {
     let sql = `SELECT * FROM member`;
     db.query(sql, (err, result) => {
       if (err) reject(err);
-      console.log(result);
       resolve(result);
     });
   });
@@ -67,7 +64,6 @@ export async function deleteMember(id) {
     //let post = parseInt(req.params.id);
     db.query(sql, (err, res) => {
       if (err) reject(err);
-      console.log(res);
       resolve(res);
     });
   });

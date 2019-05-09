@@ -9,6 +9,8 @@ import {
   deleteRewardsByMember
 } from "../db/models/member";
 
+import { getRewardById } from "../db/models/reward";
+
 export async function create(obj) {
   try {
     let member = await createMember(obj);
@@ -20,6 +22,22 @@ export async function create(obj) {
 
 export async function addRewardToMember(obj) {
   try {
+    let checkMemberReward = await getRewardsByMember(obj.memberId);
+    if (checkMemberReward && checkMemberReward.length > 0) {
+      return {
+        errorMessage: `The Member with ID ${
+          obj.memberId
+        } is already associated with Reward ID ${obj.rewardId}`
+      };
+    }
+    let checkMember = await getMemberById(obj.memberId);
+    if (checkMember && checkMember.length < 1) {
+      return { errorMessage: `No Member found with the ID ${obj.memberId}` };
+    }
+    let checkReward = await getRewardById(obj.rewardId);
+    if (checkReward && checkReward.length < 1) {
+      return { errorMessage: `No Reward found with the ID ${obj.rewardId}` };
+    }
     let member = await createMemberReward(obj);
     return member;
   } catch (e) {

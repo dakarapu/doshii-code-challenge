@@ -26,7 +26,6 @@ router.get(
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
     const user = await rewardController.getReward(id);
-    console.log("getRewardById ####################", user);
     if (user !== undefined) {
       res.status(200).send(user);
     } else {
@@ -39,7 +38,6 @@ router.get(
 router.post(
   "/rewards",
   asyncCallbackMiddleware(async (req, res) => {
-    console.log("This is USER Req Body:", req.body);
     let error = Schemas.rewardObjValidation(req.body);
     if (error !== null) {
       return (
