@@ -58,10 +58,16 @@ export async function getMembers() {
 export async function getMemberById(id) {
   return new Promise((resolve, reject) => {
     //let sql = `SELECT * FROM member WHERE id = ${id} limit 1`;
-    let sql = `SELECT member_reward.member_id, member.member_name, member_reward.reward_id FROM member_reward INNER JOIN member ON member_reward.member_id=member.id WHERE member_id = ${id}`;
+    let sql = `SELECT member_reward.member_id, member.member_name, reward.reward_name 
+    FROM member_reward 
+    INNER JOIN member 
+    ON member_reward.member_id=member.id
+    INNER JOIN reward
+    ON member_reward.reward_id=reward.id 
+    WHERE member_id = ${id}`;
     db.query(sql, (err, result) => {
       if (err) reject(err);
-      console.log(result + [0].id);
+      console.log(result);
       resolve(result);
     });
   });

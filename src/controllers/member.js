@@ -30,7 +30,16 @@ export async function getAll() {
 export async function getMember(id) {
   try {
     let member = await getMemberById(id);
-    return member;
+    let memberData = {};
+    if (member && member.length > 0) {
+      memberData.member_id = member[0].member_id;
+      memberData.member_name = member[0].member_name;
+      memberData.rewards = [];
+      member.map(v => {
+        memberData.rewards.push(v.reward_name);
+      });
+    }
+    return memberData;
   } catch (e) {
     return e;
   }
