@@ -5,6 +5,14 @@ import { asyncCallbackMiddleware } from "../middleware/asyncCallback";
 
 let router = express.Router();
 
+// homepage
+router.get(
+  "/",
+  asyncCallbackMiddleware(async (req, res) => {
+    res.status(200).send("Welcome to homepage!!");
+  })
+);
+
 // user retrieve all
 router.get(
   "/members",
@@ -41,20 +49,14 @@ router.post(
     console.log("This is USER Req Body:", req.body);
     let error = Schemas.memberObjValidation(req.body);
     if (error !== null) {
-      return (
-        res
-          .status(400)
-          //.send(`${error.name} : ${error.details[0].message}`);
-          .send(error)
-      );
+      return res.status(400).send(error);
     }
     let member = await memberController.create(req.body);
-    return res.status(201).send(member);
-    // if (member !== undefined) {
-    //   return res.status(201).send(member);
-    // } else {
-    //   return res.status(400).send("User already exists with this ID.");
-    // }
+    if (member === undefined || member.hasOwnProperty("errno")) {
+      return res.status(500).send(`${member.code}: ${member.sqlMessage}`);
+    } else {
+      return res.status(201).send("Member created Successfully");
+    }
   })
 );
 

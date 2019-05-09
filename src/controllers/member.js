@@ -10,13 +10,21 @@ import {
 } from "../db/models/member";
 
 export async function create(obj) {
-  let member = await createMember(obj);
-  return member;
+  try {
+    let member = await createMember(obj);
+    return member;
+  } catch (e) {
+    return e;
+  }
 }
 
 export async function addRewardToMember(obj) {
-  let member = await createMemberReward(obj);
-  return member;
+  try {
+    let member = await createMemberReward(obj);
+    return member;
+  } catch (e) {
+    return e;
+  }
 }
 
 export async function getAll() {
@@ -33,7 +41,6 @@ export async function getMember(id) {
   try {
     let member = await getMemberById(id);
     let rewards = await getRewardsByMember(id);
-    //return member;
     let memberData = {};
     if (member && member.length > 0) {
       memberData.member_id = member[0].id;
