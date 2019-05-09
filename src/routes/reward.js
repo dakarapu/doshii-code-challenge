@@ -59,33 +59,16 @@ router.post(
   })
 );
 
-// // course update router
-// router.put(
-//   "/rewards/:id",
-//   asyncCallbackMiddleware(async (req, res) => {
-//     let error = Schemas.rewardObjValidation(req.body);
-//     if (error !== null) {
-//       return res.send(`${error.name} : ${error.details[0].message}`);
-//     }
-//     let id = parseInt(req.params.id);
-//     let obj = req.body;
-//     let result = await rewardController.update(id, obj);
-//     if (!result)
-//       return res.status(404).send("No course found with requested courseId");
-//     return res.status(200).send(result);
-//   })
-// );
-
-// // course delete router
-// router.delete(
-//   "/rewards/:id",
-//   asyncCallbackMiddleware(async (req, res) => {
-//     let id = parseInt(req.params.id);
-//     let result = await rewardController.remove(id);
-//     if (!result)
-//       return res.status(404).send("No course found with requested courseId");
-//     return res.status(200).send(result);
-//   })
-// );
+// course delete router
+router.delete(
+  "/rewards/:id",
+  asyncCallbackMiddleware(async (req, res) => {
+    let id = parseInt(req.params.id);
+    let result = await rewardController.remove(id);
+    if (!result)
+      return res.status(404).send("No reward found with requested rewardId");
+    return res.status(200).send(result);
+  })
+);
 
 export default router;

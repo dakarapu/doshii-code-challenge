@@ -39,19 +39,20 @@ export async function getReward(id) {
 //   }
 // }
 
-export async function update(id, obj) {
-  try {
-    let reward = await updateReward(id, obj);
-    return reward;
-  } catch (e) {
-    return e;
-  }
-}
+// export async function update(id, obj) {
+//   try {
+//     let reward = await updateReward(id, obj);
+//     return reward;
+//   } catch (e) {
+//     return e;
+//   }
+// }
 
 export async function remove(id) {
   try {
-    let reward = await deleteReward(id);
-    return reward;
+    let member = await deleteReward(id);
+    let reward = await deleteRewardsByMember(id);
+    return member + reward;
   } catch (e) {
     return e;
   }

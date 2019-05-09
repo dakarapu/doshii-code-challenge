@@ -60,7 +60,7 @@ router.post(
 
 // addReward  router
 router.post(
-  "/member/:memberId/reward/:rewardId",
+  "/members/:memberId/rewards/:rewardId",
   asyncCallbackMiddleware(async (req, res) => {
     console.log("This is USER Req Body:", req.params);
     let reqObj = {
