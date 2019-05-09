@@ -42,7 +42,7 @@ router.get(
 router.post(
   "/rewards",
   asyncCallbackMiddleware(async (req, res) => {
-    let error = Schemas.courseObjValidation(req.body);
+    let error = Schemas.rewardObjValidation(req.body);
     if (error !== null) {
       return res.send(`${error.name} : ${error.details[0].message}`);
     }
@@ -61,7 +61,7 @@ router.post(
 router.put(
   "/rewards/:id",
   asyncCallbackMiddleware(async (req, res) => {
-    let error = Schemas.courseObjValidation(req.body);
+    let error = Schemas.rewardObjValidation(req.body);
     if (error !== null) {
       return res.send(`${error.name} : ${error.details[0].message}`);
     }

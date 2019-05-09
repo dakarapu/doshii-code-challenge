@@ -1,26 +1,18 @@
 import Joi from "@hapi/joi";
 
-export function courseObjValidation(body) {
-  const courseSchema = Joi.object().keys({
-    courseId: Joi.number()
+export function rewardObjValidation(body) {
+  const rewardSchema = Joi.object().keys({
+    id: Joi.number()
       .integer()
       .positive()
       .required(),
     name: Joi.string()
-      .min(5)
-      .max(255)
-      .required(),
-    author: Joi.string(),
-    category: Joi.string().required(),
-    tags: Joi.array().items(Joi.string()),
-    tags_2: Joi.array().items(Joi.string()),
-    tags_3: Joi.array().items(Joi.string()),
-    date: Joi.date().iso(),
-    isPublished: Joi.boolean(),
-    price: Joi.number().precision(2)
+      .min(3)
+      .max(200)
+      .required()
   });
 
-  let { error } = Joi.validate(body, courseSchema);
+  let { error } = Joi.validate(body, rewardSchema);
 
   if (error) {
     return error;
@@ -29,30 +21,19 @@ export function courseObjValidation(body) {
   }
 }
 
-export function userObjValidation(body) {
-  const userSchema = Joi.object().keys({
-    firstName: Joi.string()
-      .min(2)
+export function memberObjValidation(body) {
+  const memberSchema = Joi.object().keys({
+    id: Joi.number()
+      .integer()
+      .positive()
       .required(),
-    lastName: Joi.string()
-      .min(2)
-      .required(),
-    email: Joi.string()
-      .min(5)
+    name: Joi.string()
+      .min(3)
+      .max(200)
       .required()
-      .email(),
-    password: Joi.string()
-      .min(5)
-      .max(255)
-      .required(),
-    phone: Joi.string()
-      .min(10)
-      .max(10)
-      .required(),
-    role: Joi.string().required()
   });
 
-  let { error } = Joi.validate(body, userSchema);
+  let { error } = Joi.validate(body, memberSchema);
 
   if (error) {
     return error;
@@ -61,19 +42,19 @@ export function userObjValidation(body) {
   }
 }
 
-export function authObjValidation(body) {
-  const authSchema = Joi.object().keys({
-    email: Joi.string()
-      .min(5)
-      .required()
-      .email(),
-    password: Joi.string()
-      .min(5)
-      .max(255)
+export function memberRewardObjValidation(body) {
+  const memberRewardSchema = Joi.object().keys({
+    memberId: Joi.number()
+      .integer()
+      .positive()
+      .required(),
+    rewardId: Joi.number()
+      .integer()
+      .positive()
       .required()
   });
 
-  let { error } = Joi.validate(body, authSchema);
+  let { error } = Joi.validate(body, memberRewardSchema);
 
   if (error) {
     return error;

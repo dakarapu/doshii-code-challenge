@@ -1,44 +1,21 @@
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
+import db from "../index";
 import _ from "lodash";
 
-const schema = new mongoose.Schema({
-  firstName: { type: String, minlength: 2, required: true },
-  lastName: { type: String, minlength: 2, required: true },
-  email: { type: String, minlength: 5, required: true, unique: true },
-  // password is hashed so maxlength is set to 1024
-  password: { type: String, minlength: 5, maxlength: 1024, required: true },
-  phone: {
-    type: String,
-    minlength: 10,
-    maxlength: 10,
-    required: true
-  },
-  role: {
-    type: String,
-    required: true,
-    enum: ["admin", "registeredUser"]
-  },
-  date: { type: Date, default: Date.now }
-});
+export async function createMember(obj) {
+  //let memberObj = _.pick(obj,['firstName','lastName','email','password','phone'])
+  //the above variable can be used to replace in creating new Member instance
+  // ex: const member = new Member(memberObj);
+  console.log("DB create member: ", obj);
 
-const User = mongoose.model("user", schema);
-
-export async function createUser(obj) {
-  //let userObj = _.pick(obj,['firstName','lastName','email','password','phone'])
-  //the above variable can be used to replace in creating new User instance
-  // ex: const user = new User(userObj);
-  console.log("DB create user: ", obj);
-  const user = new User({
-    firstName: obj.firstName,
-    lastName: obj.lastName,
-    email: obj.email,
-    password: obj.password,
-    phone: obj.phone,
-    role: obj.role
-  });
   try {
-    const result = await user.save();
-    return { response: result };
+    let post = { id: req.body.id, name: req.body.name };
+    let sql = "INSERT INTO member SET ?";
+    db.query(sql, post, (err, result) => {
+      if (err) throw err;
+      console.log("##################################", result);
+      return result;
+    });
   } catch (e) {
     let errorList = [];
     for (let field in e.errors) {
@@ -48,10 +25,11 @@ export async function createUser(obj) {
   }
 }
 
-// find all user by query
-export async function getUsers() {
+// find all member by query
+export async function getMembers() {
   try {
-    const result = await User.find({}).sort({ name: 1 });
+    let sql = "SELECT * FROM members";
+    const result = await db.query(sql);
     if (!result) return { message: "No records found" };
     return result;
   } catch (e) {
@@ -59,22 +37,23 @@ export async function getUsers() {
   }
 }
 
-// find a user by ID
-export async function getUserById(id) {
+// find a member by ID
+export async function getMemberById(id) {
   try {
-    const result = await User.findOne({ _id: id });
-    if (!result) return { message: "No user found" };
-    return result;
+    let sql = `SELECT * FROM members WHERE id = ${id}`;
+    const result = await db.query(sql);
+    if (!result) return { message: "No member found" };
+    //return result;
   } catch (e) {
     return e.error;
   }
 }
 
-// find a user by email
-export async function getUserByEmail(emailId) {
+// find a member by email
+export async function getMemberByEmail(emailId) {
   try {
-    const result = await User.findOne({ email: emailId });
-    if (!result) return { message: "No user found" };
+    const result = await Member.findOne({ email: emailId });
+    if (!result) return { message: "No member found" };
     return result;
   } catch (e) {
     return e.error;
@@ -82,20 +61,20 @@ export async function getUserByEmail(emailId) {
 }
 
 // this update function follows as by find and then save method
-export async function searchAndUpdateUser(id) {
-  const user = await User.findById(id);
-  if (!user) return;
+export async function searchAndUpdateMember(id) {
+  const member = await Member.findById(id);
+  if (!member) return;
 
-  user.firstName = "Ravikanth";
-  user.lastName = "Dakarapu";
-  const result = await user.save();
+  member.firstName = "Ravikanth";
+  member.lastName = "Dakarapu";
+  const result = await member.save();
   return result;
 }
 
-export async function updateUser(id, obj) {
+export async function updateMember(id, obj) {
   try {
-    const result = await User.findOneAndUpdate(
-      { userId: id },
+    const result = await Member.findOneAndUpdate(
+      { memberId: id },
       {
         $set: {
           firstName: obj.firstName,
@@ -113,7 +92,7 @@ export async function updateUser(id, obj) {
   }
 }
 
-export async function deleteUser(id) {
-  const result = await User.findOneAndRemove({ userId: id });
+export async function deleteMember(id) {
+  const result = await Member.findOneAndRemove({ memberId: id });
   return result;
 }

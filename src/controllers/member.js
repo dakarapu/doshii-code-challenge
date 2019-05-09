@@ -8,12 +8,7 @@ import {
   deleteMember
 } from "../db/models/member";
 
-// import bcrypt from "bcrypt";
-
 export async function create(obj) {
-  // let salt = await bcrypt.genSalt(10);
-  // let hash = await bcrypt.hash(obj.password, salt);
-  // obj.password = hash;
   let member = await createMember(obj);
   return member;
 }
