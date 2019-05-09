@@ -32,6 +32,18 @@ export async function createMember(obj) {
   });
 }
 
+export async function createMemberReward(obj) {
+  return new Promise((resolve, reject) => {
+    let post = { member_id: obj.memberId, reward_id: obj.rewardId };
+    let sql = "INSERT INTO member_reward SET ?";
+    db.query(sql, post, (err, result) => {
+      if (err) reject(err);
+      console.log(result);
+      resolve(result);
+    });
+  });
+}
+
 // find all member by query
 export async function getMembers() {
   return new Promise((resolve, reject) => {

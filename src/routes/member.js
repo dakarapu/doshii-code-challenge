@@ -59,6 +59,34 @@ router.post(
   })
 );
 
+// addReward  router
+router.post(
+  "/member/:memberId/reward/:rewardId",
+  asyncCallbackMiddleware(async (req, res) => {
+    console.log("This is USER Req Body:", req.params);
+    let reqObj = {
+      memberId: req.params.memberId,
+      rewardId: req.params.rewardId
+    };
+    let error = Schemas.memberRewardObjValidation(reqObj);
+    if (error !== null) {
+      return (
+        res
+          .status(400)
+          //.send(`${error.name} : ${error.details[0].message}`);
+          .send(error)
+      );
+    }
+    let member = await memberController.addRewardToMember(reqObj);
+    return res.status(201).send(member);
+    // if (member !== undefined) {
+    //   return res.status(201).send(member);
+    // } else {
+    //   return res.status(400).send("User already exists with this ID.");
+    // }
+  })
+);
+
 // // user update router
 // router.put(
 //   "/members/:id",

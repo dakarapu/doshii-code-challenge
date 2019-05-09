@@ -1,5 +1,6 @@
 import {
   createMember,
+  createMemberReward,
   getMembers,
   getMemberById,
   updateMember,
@@ -8,6 +9,11 @@ import {
 
 export async function create(obj) {
   let member = await createMember(obj);
+  return member;
+}
+
+export async function addRewardToMember(obj) {
+  let member = await createMemberReward(obj);
   return member;
 }
 
