@@ -1,19 +1,9 @@
-import {
-  createMember,
-  createMemberReward,
-  getMembers,
-  getRewardsByMember,
-  getMemberById,
-  updateMember,
-  deleteMember,
-  deleteRewardsByMember
-} from "../db/models/member";
-
-import { getRewardById } from "../db/models/reward";
+import * as MemberModel from "../db/models/member";
+import * as RewardModel from "../db/models/reward";
 
 export async function create(obj) {
   try {
-    let member = await createMember(obj);
+    let member = await MemberModel.createMember(obj);
     return member;
   } catch (e) {
     return e;
@@ -22,7 +12,7 @@ export async function create(obj) {
 
 export async function addRewardToMember(obj) {
   try {
-    let checkMemberReward = await getRewardsByMember(obj.memberId);
+    let checkMemberReward = await MemberModel.getRewardsByMember(obj.memberId);
     if (checkMemberReward && checkMemberReward.length > 0) {
       return {
         errorMessage: `The Member with ID ${
@@ -30,15 +20,15 @@ export async function addRewardToMember(obj) {
         } is already associated with Reward ID ${obj.rewardId}`
       };
     }
-    let checkMember = await getMemberById(obj.memberId);
+    let checkMember = await MemberModel.getMemberById(obj.memberId);
     if (checkMember && checkMember.length < 1) {
       return { errorMessage: `No Member found with the ID ${obj.memberId}` };
     }
-    let checkReward = await getRewardById(obj.rewardId);
+    let checkReward = await RewardModel.getRewardById(obj.rewardId);
     if (checkReward && checkReward.length < 1) {
       return { errorMessage: `No Reward found with the ID ${obj.rewardId}` };
     }
-    let member = await createMemberReward(obj);
+    let member = await MemberModel.createMemberReward(obj);
     return member;
   } catch (e) {
     return e;
@@ -47,7 +37,7 @@ export async function addRewardToMember(obj) {
 
 export async function getAll() {
   try {
-    let members = await getMembers();
+    let members = await MemberModel.getMembers();
     if (members.length < 1) return "No members available";
     return members;
   } catch (e) {
@@ -57,8 +47,8 @@ export async function getAll() {
 
 export async function getMember(id) {
   try {
-    let member = await getMemberById(id);
-    let rewards = await getRewardsByMember(id);
+    let member = await MemberModel.getMemberById(id);
+    let rewards = await MemberModel.getRewardsByMember(id);
     let memberData = {};
     if (member && member.length > 0) {
       memberData.member_id = member[0].id;
@@ -75,7 +65,7 @@ export async function getMember(id) {
 
 export async function update(id, obj) {
   try {
-    let member = await updateMember(id, obj);
+    let member = await MemberModel.updateMember(id, obj);
     return member;
   } catch (e) {
     return e;
@@ -84,8 +74,8 @@ export async function update(id, obj) {
 
 export async function remove(id) {
   try {
-    let member = await deleteMember(id);
-    let reward = await deleteRewardsByMember(id);
+    let member = await MemberModel.deleteMember(id);
+    let reward = await MemberModel.deleteRewardsByMember(id);
     return member;
   } catch (e) {
     return e;

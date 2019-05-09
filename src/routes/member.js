@@ -1,6 +1,6 @@
 import express from "express";
 import * as Schemas from "../utilities/schemaDefinitions";
-import * as memberController from "../controllers/member";
+import * as MemberController from "../controllers/member";
 import { asyncCallbackMiddleware } from "../middleware/asyncCallback";
 
 let router = express.Router();
@@ -17,7 +17,7 @@ router.get(
 router.get(
   "/members",
   asyncCallbackMiddleware(async (req, res) => {
-    let members = await memberController.getAll();
+    let members = await MemberController.getAll();
     if (members === undefined) {
       res.status(500).send("Internal Server Error.");
     } else if (members && members.length < 1) {
@@ -33,7 +33,7 @@ router.get(
   "/members/:id",
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
-    const user = await memberController.getMember(id);
+    const user = await MemberController.getMember(id);
     if (user !== undefined) {
       res.status(200).send(user);
     } else {
@@ -50,7 +50,7 @@ router.post(
     if (error !== null) {
       return res.status(400).send(error);
     }
-    let member = await memberController.create(req.body);
+    let member = await MemberController.create(req.body);
     if (member === undefined || member.hasOwnProperty("errno")) {
       return res.status(500).send(`${member.code}: ${member.sqlMessage}`);
     } else {
@@ -71,7 +71,7 @@ router.post(
     if (error !== null) {
       return res.status(400).send(error);
     }
-    let member = await memberController.addRewardToMember(reqObj);
+    let member = await MemberController.addRewardToMember(reqObj);
 
     if (member && member.hasOwnProperty("errorMessage")) {
       return res.status(500).send(member.errorMessage);
@@ -85,7 +85,7 @@ router.delete(
   "/members/:id",
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
-    let result = await memberController.remove(id);
+    let result = await MemberController.remove(id);
     if (result && result.affectedRows === 0) {
       return res.status(404).send("No user found with requested userId");
     }
