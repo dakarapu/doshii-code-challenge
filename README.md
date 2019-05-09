@@ -1,1 +1,9 @@
 # doshii-code-challenge
+
+"CREATE DATABASE IF NOT EXISTS doshii"
+
+"CREATE TABLE IF NOT EXISTS member (id INT NOT NULL PRIMARY KEY,member_name VARCHAR(200))"
+
+"CREATE TABLE IF NOT EXISTS reward (id INT NOT NULL PRIMARY KEY,reward_name VARCHAR(200))"
+
+"CREATE TABLE IF NOT EXISTS member_reward (id int NOT NULL AUTO_INCREMENT,member_id INT NOT NULL,reward_id INT NOT NULL,PRIMARY KEY (id),FOREIGN KEY (member_id) REFERENCES member(id),FOREIGN KEY (reward_id) REFERENCES reward(id))"

@@ -1,8 +1,8 @@
 {
   "database": {
-    "host": "",
-    "username": "",
+    "hostname": "localhost",
+    "username": "root",
     "password": "",
-    "db": ""
+    "dbName": "doshii"
   }
 }
