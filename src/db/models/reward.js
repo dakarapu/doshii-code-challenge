@@ -6,7 +6,6 @@ export async function createReward(obj) {
     let sql = "INSERT INTO reward SET ?";
     db.query(sql, post, (err, result) => {
       if (err) reject(err);
-      console.log(result);
       resolve(result);
     });
   });
@@ -18,7 +17,6 @@ export async function getRewards() {
     let sql = `SELECT * FROM reward`;
     db.query(sql, (err, result) => {
       if (err) reject(err);
-      console.log(result);
       resolve(result);
     });
   });
@@ -30,7 +28,6 @@ export async function getRewardById(id) {
     let sql = `SELECT * FROM reward WHERE id = ${id} limit 1`;
     db.query(sql, (err, result) => {
       if (err) reject(err);
-      console.log(result);
       resolve(result);
     });
   });
@@ -42,7 +39,6 @@ export async function deleteReward(id) {
     //let post = parseInt(req.params.id);
     db.query(sql, (err, res) => {
       if (err) reject(err);
-      console.log(res);
       resolve(res);
     });
   });

@@ -87,9 +87,9 @@ router.delete(
     let id = parseInt(req.params.id);
     let result = await MemberController.remove(id);
     if (result && result.affectedRows === 0) {
-      return res.status(404).send("No user found with requested userId");
+      return res.status(404).send(`No Member found with requested Id ${id}`);
     }
-    return res.status(200).send(result);
+    return res.status(200).send(`Successfully deleted Member with ID ${id}`);
   })
 );
 

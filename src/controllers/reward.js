@@ -3,12 +3,17 @@ import {
   getRewards,
   getRewardById,
   updateReward,
-  deleteReward
+  deleteReward,
+  deleteRewardsByMember
 } from "../db/models/reward";
 
 export async function create(obj) {
-  let reward = await createReward(obj);
-  return reward;
+  try {
+    let reward = await createReward(obj);
+    return reward;
+  } catch (e) {
+    return e;
+  }
 }
 
 export async function getAll() {
@@ -30,29 +35,11 @@ export async function getReward(id) {
   }
 }
 
-// export async function checkIfRewardExists(id) {
-//   try {
-//     let reward = await getRewardByEmail(id);
-//     return reward;
-//   } catch (e) {
-//     return e;
-//   }
-// }
-
-// export async function update(id, obj) {
-//   try {
-//     let reward = await updateReward(id, obj);
-//     return reward;
-//   } catch (e) {
-//     return e;
-//   }
-// }
-
 export async function remove(id) {
   try {
-    let member = await deleteReward(id);
-    let reward = await deleteRewardsByMember(id);
-    return member + reward;
+    let reward = await deleteReward(id);
+    let rewardMember = await deleteRewardsByMember(id);
+    return reward;
   } catch (e) {
     return e;
   }
