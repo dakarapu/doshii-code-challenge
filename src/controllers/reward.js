@@ -13,7 +13,6 @@ export async function create(obj) {
 export async function getAll() {
   try {
     let rewards = await RewardModel.getRewards();
-    if (rewards.length < 1) return "No rewards available";
     return rewards;
   } catch (e) {
     return e;
