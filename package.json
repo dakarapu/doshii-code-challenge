@@ -5,11 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "server": "babel-node ./src/bin/www",
-    "server:prod": "node ./dist/bin/www",
     "dev": "SET NODE_ENV=development&& npm-run-all server",
-    "clean": "rimraf dist",
-    "build": "babel ./src --out-dir dist",
-    "prod": "SET NODE_ENV=production npm-run-all clean build server:prod",
     "watch": "nodemon",
     "test": "SET NODE_ENV=test&& jest --verbose",
     "test:coverage": "jest --coverage"
@@ -50,6 +46,7 @@
   },
   "jest": {
     "verbose": true,
+    "testURL": "http://localhost:3006",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },

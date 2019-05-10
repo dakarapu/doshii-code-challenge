@@ -1,14 +1,14 @@
-const request = require("supertest");
+import server from "../../src/app";
 
-let server;
+import request from "supertest";
 
 describe("Testing Members model enpoints", () => {
-  beforeEach(() => {
-    server = require("../../src/app");
-  });
-  afterEach(() => {
-    server.close();
-  });
+  // beforeEach(async () => {
+  //   server = await require("../../src/app");
+  // });
+  // afterEach(() => {
+  //   server.close();
+  // });
 
   describe("GET /members", () => {
     it("Should fetch all the Members successfully", async () => {

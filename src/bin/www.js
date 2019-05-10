@@ -36,3 +36,5 @@ function normalizePort(val) {
 
   return false;
 }
+
+export default app;
