@@ -1,4 +1,5 @@
 import express from "express";
+//import "@babel/polyfill";
 import * as Schemas from "../utilities/schemaDefinitions";
 import * as MemberController from "../controllers/member";
 import { asyncCallbackMiddleware } from "../middleware/asyncCallback";

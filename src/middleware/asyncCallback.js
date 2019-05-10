@@ -1,3 +1,5 @@
+//import "@babel/polyfill";
+
 export function asyncCallbackMiddleware(handler) {
   return async (req, res, next) => {
     try {

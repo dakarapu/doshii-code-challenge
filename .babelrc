@@ -1,3 +1,4 @@
 {
-  "presets": ["@babel/preset-env", "jest"]
+  "presets": ["@babel/preset-env", "jest"],
+  "plugins": [["@babel/transform-runtime"]]
 }

@@ -1,6 +1,10 @@
 /**
  * Module dependencies.
  */
+// import "@babel/core";
+// import "@babel/register";
+// import "@babel/polyfill";
+// import "regenerator-runtime/runtime";
 import app from "../app";
 //import debugLib from "debug";
 //const debug = debugLib("api-server:server");

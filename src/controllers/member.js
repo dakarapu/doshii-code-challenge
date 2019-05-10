@@ -1,3 +1,4 @@
+//import "@babel/polyfill";
 import * as MemberModel from "../db/models/member";
 import * as RewardModel from "../db/models/reward";
 

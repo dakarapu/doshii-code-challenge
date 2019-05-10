@@ -15,7 +15,8 @@ const app = express();
 // });
 
 // setting morgan log to dev
-console.log("App_Env: ", process.env.NODE_ENV);
+console.log("App_Env:", process.env.NODE_ENV);
+console.log("App_Env length:", process.env.NODE_ENV.length);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

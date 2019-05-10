@@ -1,4 +1,5 @@
 import express from "express";
+//import "@babel/polyfill";
 import * as Schemas from "../utilities/schemaDefinitions";
 import * as RewardController from "../controllers/reward";
 import { asyncCallbackMiddleware } from "../middleware/asyncCallback";
