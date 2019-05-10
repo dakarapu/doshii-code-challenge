@@ -5,6 +5,9 @@ import * as RewardModel from "../../src/db/models/reward";
 
 describe("Testing Members Rewards enpoint", () => {
   beforeAll(async () => {
+    await MemberModel.truncateMemberTable();
+    await MemberModel.truncateMemberRewardTable();
+    await RewardModel.truncateRewardTable();
     await MemberModel.createMember({ id: 100, name: "User_1" });
     await RewardModel.createReward({ id: 400, name: "REWARD_1" });
   });

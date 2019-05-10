@@ -70,15 +70,6 @@ export async function getMember(id) {
   }
 }
 
-export async function update(id, obj) {
-  try {
-    let member = await MemberModel.updateMember(id, obj);
-    return member;
-  } catch (e) {
-    return e;
-  }
-}
-
 export async function remove(id) {
   try {
     let member = await MemberModel.deleteMember(id);

@@ -78,3 +78,23 @@ export async function deleteRewardsByMember(id) {
     });
   });
 }
+
+export async function truncateMemberTable() {
+  return new Promise((resolve, reject) => {
+    let sql = `TRUNCATE member`;
+    db.query(sql, (err, res) => {
+      if (err) reject(err);
+      resolve(res);
+    });
+  });
+}
+
+export async function truncateMemberRewardTable() {
+  return new Promise((resolve, reject) => {
+    let sql = `TRUNCATE member_reward`;
+    db.query(sql, (err, res) => {
+      if (err) reject(err);
+      resolve(res);
+    });
+  });
+}

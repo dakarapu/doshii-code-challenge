@@ -1,8 +1,14 @@
 import request from "supertest";
 import server from "../../src/app";
 import * as MemberModel from "../../src/db/models/member";
+import * as RewardModel from "../../src/db/models/reward";
 
 describe("Testing Members model enpoints", () => {
+  beforeAll(async () => {
+    await MemberModel.truncateMemberTable();
+    await MemberModel.truncateMemberRewardTable();
+    await RewardModel.truncateRewardTable();
+  });
   afterAll(() => {
     server.close();
   });
