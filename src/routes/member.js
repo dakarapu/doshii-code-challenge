@@ -1,5 +1,4 @@
 import express from "express";
-//import "@babel/polyfill";
 import * as Schemas from "../utilities/schemaDefinitions";
 import * as MemberController from "../controllers/member";
 import { asyncCallbackMiddleware } from "../middleware/asyncCallback";
@@ -34,11 +33,11 @@ router.get(
   "/members/:id",
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
-    const user = await MemberController.getMember(id);
-    if (user !== undefined && user.length > 0) {
-      res.status(200).send(user);
-    } else {
+    const member = await MemberController.getMember(id);
+    if (Object.keys(member).length === 0) {
       res.status(404).send(`No user available with the requested ID`);
+    } else {
+      res.status(200).send(member);
     }
   })
 );

@@ -1,4 +1,3 @@
-//import "@babel/polyfill";
 import * as MemberModel from "../db/models/member";
 import * as RewardModel from "../db/models/reward";
 
@@ -44,7 +43,6 @@ export async function addRewardToMember(obj) {
 export async function getAll() {
   try {
     let members = await MemberModel.getMembers();
-    if (members.length < 1) return "No members available";
     return members;
   } catch (e) {
     return e;
@@ -57,13 +55,16 @@ export async function getMember(id) {
     let rewards = await MemberModel.getRewardsByMember(id);
     let memberData = {};
     if (member && member.length > 0) {
+      memberData.rewards = [];
       memberData.member_id = member[0].id;
       memberData.member_name = member[0].member_name;
-      memberData.rewards = rewards;
+      if (rewards && rewards.length > 0) {
+        memberData.rewards = rewards;
+      }
+      return memberData;
     } else {
-      return member;
+      return memberData;
     }
-    return memberData;
   } catch (e) {
     return e;
   }

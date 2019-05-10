@@ -1,4 +1,3 @@
-//import "@babel/polyfill";
 import db from "../connection";
 
 export async function createMember(obj) {
