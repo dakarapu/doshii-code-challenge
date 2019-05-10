@@ -61,7 +61,6 @@ export async function getRewardsByMember(id) {
 export async function deleteMember(id) {
   return new Promise((resolve, reject) => {
     let sql = `DELETE FROM member WHERE id=${id}`;
-    //let post = parseInt(req.params.id);
     db.query(sql, (err, res) => {
       if (err) reject(err);
       resolve(res);

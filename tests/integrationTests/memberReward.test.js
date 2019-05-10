@@ -10,7 +10,7 @@ describe("Testing Members Rewards enpoint", () => {
     await RewardModel.truncateRewardTable();
     await MemberModel.createMember({ id: 100, name: "User_1" });
     await RewardModel.createReward({ id: 400, name: "REWARD_1" });
-  });
+  }, 6000);
   afterAll(async () => {
     await MemberModel.deleteMember(100);
     await RewardModel.deleteReward(400);

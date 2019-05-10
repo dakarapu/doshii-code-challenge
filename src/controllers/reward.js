@@ -1,4 +1,3 @@
-//import "@babel/polyfill";
 import * as RewardModel from "../db/models/reward";
 
 export async function create(obj) {

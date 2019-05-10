@@ -8,7 +8,7 @@ describe("Testing Rewards model enpoints", () => {
     await MemberModel.truncateMemberTable();
     await MemberModel.truncateMemberRewardTable();
     await RewardModel.truncateRewardTable();
-  });
+  }, 6000);
   afterAll(() => {
     server.close();
   });
