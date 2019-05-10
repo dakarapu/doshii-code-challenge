@@ -35,7 +35,7 @@ router.get(
   asyncCallbackMiddleware(async (req, res) => {
     let id = parseInt(req.params.id);
     const user = await MemberController.getMember(id);
-    if (user !== undefined) {
+    if (user !== undefined && user.length > 0) {
       res.status(200).send(user);
     } else {
       res.status(404).send(`No user available with the requested ID`);
