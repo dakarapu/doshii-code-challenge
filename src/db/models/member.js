@@ -46,7 +46,7 @@ export async function getMemberById(id) {
 
 export async function getRewardsByMember(id) {
   return new Promise((resolve, reject) => {
-    let sql = `SELECT reward.id, reward.reward_name 
+    let sql = `SELECT member_reward.member_id, reward.id, reward.reward_name 
     FROM member_reward 
     INNER JOIN reward
     ON member_reward.reward_id=reward.id 

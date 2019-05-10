@@ -13,7 +13,12 @@ export async function create(obj) {
 export async function addRewardToMember(obj) {
   try {
     let checkMemberReward = await MemberModel.getRewardsByMember(obj.memberId);
-    if (checkMemberReward && checkMemberReward.length > 0) {
+    if (
+      checkMemberReward &&
+      checkMemberReward.length > 0 &&
+      checkMemberReward.id === obj.rewardId &&
+      checkMemberReward.member_id === obj.memberId
+    ) {
       return {
         errorMessage: `The Member with ID ${
           obj.memberId

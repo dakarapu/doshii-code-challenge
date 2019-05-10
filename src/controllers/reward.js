@@ -1,15 +1,8 @@
-import {
-  createReward,
-  getRewards,
-  getRewardById,
-  updateReward,
-  deleteReward,
-  deleteRewardsByMember
-} from "../db/models/reward";
+import * as RewardModel from "../db/models/reward";
 
 export async function create(obj) {
   try {
-    let reward = await createReward(obj);
+    let reward = await RewardModel.createReward(obj);
     return reward;
   } catch (e) {
     return e;
@@ -18,7 +11,7 @@ export async function create(obj) {
 
 export async function getAll() {
   try {
-    let rewards = await getRewards();
+    let rewards = await RewardModel.getRewards();
     if (rewards.length < 1) return "No rewards available";
     return rewards;
   } catch (e) {
@@ -28,7 +21,7 @@ export async function getAll() {
 
 export async function getReward(id) {
   try {
-    let reward = await getRewardById(id);
+    let reward = await RewardModel.getRewardById(id);
     return reward;
   } catch (e) {
     return e;
@@ -37,8 +30,8 @@ export async function getReward(id) {
 
 export async function remove(id) {
   try {
-    let reward = await deleteReward(id);
-    let rewardMember = await deleteRewardsByMember(id);
+    let reward = await RewardModel.deleteReward(id);
+    let rewardMember = await RewardModel.deleteRewardsByMember(id);
     return reward;
   } catch (e) {
     return e;
