@@ -6,13 +6,13 @@
 
 ## Web Application
 
-- Technologies and versions used:
+- **Technologies and Versions Used** :
 
   - `NPM - v6.4.1`
   - `Node - v10.15.0`
   - `MySQL - 5.7.21`
 
-- Setup process:
+- **Setup process** :
 
   - Install above mentioned dependencies.
   - use `npm install` to install project dependencies.
@@ -25,7 +25,7 @@
   - use `npm test` to execute test cases that includes both unit tests and integration tests.
   - use `npm test:coverage` to get the code coverage, this will create a coverage folder inside project.
 
-- Application details:
+- **Application details** :
 
   - Maintained `ES6` standard for application implementation.
   - Used `Express` framework for building APIs and `Babel` for to support ES6.
@@ -41,7 +41,8 @@
 - Application access:
 
   - Base url for application `http://localhost:3006`
-  - Member endpoints:
+
+  - **Member endpoints** :
 
     - **GET** :
 
@@ -51,7 +52,7 @@
       ex:  http://localhost:3006/members
       ```
 
-      2. `/members/id` - for getting a member with ID
+      2. `/members/:id` - for getting a member with ID
 
       ```
       ex: http://localhost:3006/members/100
@@ -59,17 +60,17 @@
 
     - **POST** :
 
-    1.  `/members` - to create new member in database with request body as JSON object. Request body must contain `{id:number, name:string}` both are required with name 3 minimum characters long.
+      1.  `/members` - to create new member in database with request body as JSON object. Request body must contain `{id:number, name:string}` both are required with name 3 minimum characters long.
 
-    ```
-    ex: { id: 201, name: "johnny" }
-    ```
+      ```
+      ex: { id: 201, name: "johnny" }
+      ```
 
-    - **DELETE** :
+      - **DELETE** :
 
-      1. `/members/id` - to delete an existing member
+      1. `/members/:id` - to delete an existing member
 
-  - Reward endpoints:
+  - **Reward endpoints** :
 
     - **GET** :
 
@@ -79,7 +80,7 @@
       ex:  http://localhost:3006/rewards
       ```
 
-      2. `/rewards/id` - for getting a reward with ID
+      2. `/rewards/:id` - for getting a reward with ID
 
       ```
       ex: http://localhost:3006/rewards/500
@@ -87,13 +88,26 @@
 
     - **POST** :
 
-      1. `/rewards` - to create new reward in database with request body as JSON object.
-         req body must contain `{id:number, name:string}` both are required with name 3 minimum characters long.
-         ex:`{ id: 500, name: "REWARD_1" }`
+      1. `/rewards` - to create new reward in database with request body as JSON object. Request body must contain `{id:number, name:string}` both are required with name 3 minimum characters long.
+
+      ```
+      ex: { id: 500, name: "REWARD_1" }
+      ```
 
     - **DELETE** :
 
       1. `/rewards/id` - to delete an existing reward
+
+  - **Member-Reward Association endpoints** :
+
+    - **POST** :
+
+      1. `/members/:memberId/rewards/:rewardId` - to add an existing reward on to an existing member.
+         For successfully adding reward to member, make sure both member and reward exist.
+
+      ```
+      ex: http://localhost:3006/members/100/rewards/500
+      ```
 
 ## A Small Web Application
 
