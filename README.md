@@ -43,38 +43,57 @@
   - Base url for application `http://localhost:3006`
   - Member endpoints:
 
-    - GET :
-      `/members` - for getting all members
+    - **GET** :
+
+      1. `/members` - for getting all members
+
       ```
       ex:  http://localhost:3006/members
       ```
-      `/members/id` - for getting a member with ID
+
+      2. `/members/id` - for getting a member with ID
+
       ```
       ex: http://localhost:3006/members/100
       ```
-    - POST :
-      `/members` - to create new member in database with request body as JSON object.
-      req body details: `{id:number, name:string}` both are required with name 3 minimum characters long.
-      ex:`{ id: 201, name: "johnny" }`
-    - DELETE :
-      `/members/id` - to delete an existing member
+
+    - **POST** :
+
+    1.  `/members` - to create new member in database with request body as JSON object. Request body must contain `{id:number, name:string}` both are required with name 3 minimum characters long.
+
+    ```
+    ex: { id: 201, name: "johnny" }
+    ```
+
+    - **DELETE** :
+
+      1. `/members/id` - to delete an existing member
 
   - Reward endpoints:
-    - GET :
-      `/rewards` - for getting all rewards
+
+    - **GET** :
+
+      1. `/rewards` - for getting all rewards
+
       ```
       ex:  http://localhost:3006/rewards
       ```
-      `/rewards/id` - for getting a reward with ID
+
+      2. `/rewards/id` - for getting a reward with ID
+
       ```
       ex: http://localhost:3006/rewards/500
       ```
-    - POST :
-      `/rewards` - to create new reward in database with request body as JSON object.
-      req body details: `{id:number, name:string}` both are required with name 3 minimum characters long.
-      ex:`{ id: 500, name: "REWARD_1" }`
-    - DELETE :
-      `/rewards/id` - to delete an existing reward
+
+    - **POST** :
+
+      1. `/rewards` - to create new reward in database with request body as JSON object.
+         req body must contain `{id:number, name:string}` both are required with name 3 minimum characters long.
+         ex:`{ id: 500, name: "REWARD_1" }`
+
+    - **DELETE** :
+
+      1. `/rewards/id` - to delete an existing reward
 
 ## A Small Web Application
 
