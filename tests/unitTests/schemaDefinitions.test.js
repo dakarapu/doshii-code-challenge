@@ -1,7 +1,6 @@
 import * as Schemas from "../../src/utilities/schemaDefinitions";
 
 describe("Validation Schema Suit", () => {
-  // Reward Schema Validation
   it("Test Successful Reward Validation", () => {
     let res = Schemas.rewardObjValidation({ id: 100, name: "REWARD_1" });
     expect(res).toBe(null);
@@ -12,7 +11,6 @@ describe("Validation Schema Suit", () => {
     expect(res).toHaveProperty("name", "ValidationError");
   });
 
-  // Member Schema Validation
   it("Test Successful Reward Validation", () => {
     let res = Schemas.memberObjValidation({ id: 500, name: "member_name" });
     expect(res).toBe(null);
@@ -27,7 +25,6 @@ describe("Validation Schema Suit", () => {
     );
   });
 
-  // Member-Reward Schema Validation
   it("Test Successful Reward Validation", () => {
     let res = Schemas.memberRewardObjValidation({
       memberId: 500,

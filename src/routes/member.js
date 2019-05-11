@@ -5,7 +5,6 @@ import { asyncCallbackMiddleware } from "../middleware/asyncCallback";
 
 let router = express.Router();
 
-// homepage
 router.get(
   "/",
   asyncCallbackMiddleware(async (req, res) => {
@@ -13,7 +12,6 @@ router.get(
   })
 );
 
-// user retrieve all
 router.get(
   "/members",
   asyncCallbackMiddleware(async (req, res) => {
@@ -28,7 +26,6 @@ router.get(
   })
 );
 
-// user retrieve by id
 router.get(
   "/members/:id",
   asyncCallbackMiddleware(async (req, res) => {
@@ -42,7 +39,6 @@ router.get(
   })
 );
 
-// user create router
 router.post(
   "/members",
   asyncCallbackMiddleware(async (req, res) => {
@@ -59,7 +55,6 @@ router.post(
   })
 );
 
-// addReward  router
 router.post(
   "/members/:memberId/rewards/:rewardId",
   asyncCallbackMiddleware(async (req, res) => {
@@ -80,7 +75,6 @@ router.post(
   })
 );
 
-// user delete router
 router.delete(
   "/members/:id",
   asyncCallbackMiddleware(async (req, res) => {

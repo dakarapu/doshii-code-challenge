@@ -27,6 +27,17 @@ describe("Testing Members Rewards enpoint", () => {
       expect(res.status).toBe(201);
     });
 
+    it("Should fetch member successfully a member and its associated rewards", async () => {
+      const res = await request(server).get("/members/100");
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty("member_name", "User_1");
+      expect(res.body).toEqual({
+        member_id: 100,
+        member_name: "User_1",
+        rewards: [{ member_id: 100, id: 400, reward_name: "REWARD_1" }]
+      });
+    });
+
     it("should throw 500 error when passing invalid member ID", async () => {
       const res = await request(server).post("/members/160/rewards/400");
       expect(res.status).toBe(500);

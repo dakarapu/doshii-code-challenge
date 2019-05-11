@@ -22,7 +22,6 @@ export async function createMemberReward(obj) {
   });
 }
 
-// find all member by query
 export async function getMembers() {
   return new Promise((resolve, reject) => {
     let sql = `SELECT * FROM member`;
@@ -33,7 +32,6 @@ export async function getMembers() {
   });
 }
 
-// find a member by ID
 export async function getMemberById(id) {
   return new Promise((resolve, reject) => {
     let sql = `select * from member WHERE id = ${id}`;

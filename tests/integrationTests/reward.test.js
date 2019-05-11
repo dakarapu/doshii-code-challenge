@@ -23,11 +23,19 @@ describe("Testing Rewards model enpoints", () => {
       await RewardModel.createReward({ id: 500, name: "REWARD_1" });
       const res = await request(server).get("/rewards");
       expect(res.status).toBe(200);
+      expect(res.body).toHaveLength(1);
+      expect(res.body).toEqual([{ id: 500, reward_name: "REWARD_1" }]);
     });
 
     it("Should fetch reward successfully when searching reward with an id that exists", async () => {
       const res = await request(server).get("/rewards/500");
       expect(res.status).toBe(200);
+      expect(res.body).toEqual([
+        {
+          id: 500,
+          reward_name: "REWARD_1"
+        }
+      ]);
     });
 
     it("Should throw error fetching all rewards", async () => {
