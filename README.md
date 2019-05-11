@@ -7,11 +7,13 @@
 ## Web Application
 
 - Technologies and versions used:
-  `NPM - v6.4.1`
-  `Node - v10.15.0`
-  `MySQL - 5.7.21`
+
+  - `NPM - v6.4.1`
+  - `Node - v10.15.0`
+  - `MySQL - 5.7.21`
 
 - Setup process:
+
   - Install above mentioned dependencies.
   - use `npm install` to install project dependencies.
   - create dev and test databases, a dump file is include `/db_dumps/schema.sql` to execute script.
@@ -22,6 +24,14 @@
   - use `npm start` to start the application on port `3006`.
   - use `npm test` to execute test cases that includes both unit tests and integration tests.
   - use `npm test:coverage` to get the code coverage, this will create a coverage folder inside project.
+
+- Application details:
+
+  - Used `ES6` standard for application implementation.
+  - Used `Express` framework for building APIs and `Babel` for to support ES6.
+  - Used `Nodemon` to detect code changes and automatic app restart.
+  - Used `Jest` framework for testing the application and code coverage.
+  - Used `SuperTest` library for testing the HTTP request.
 
 ## A Small Web Application
 
