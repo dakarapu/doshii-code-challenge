@@ -27,11 +27,19 @@ describe("Testing Members model enpoints", () => {
       await MemberModel.createMember({ id: 201, name: "johnny" });
       const res = await request(server).get("/members");
       expect(res.status).toBe(200);
+      expect(res.body).toHaveLength(1);
+      expect(res.body[0]).toEqual({ id: 201, member_name: "johnny" });
     });
 
     it("Should fetch member successfully when searching member with an id that exists", async () => {
       const res = await request(server).get("/members/201");
       expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty("member_name", "johnny");
+      expect(res.body).toEqual({
+        member_id: 201,
+        member_name: "johnny",
+        rewards: []
+      });
     });
 
     it("Should throw error fetching all memebers", async () => {
@@ -47,13 +55,14 @@ describe("Testing Members model enpoints", () => {
   });
 
   describe("POST /members", () => {
-    it("should successfully add member to database", async () => {
+    it("should throw name validation error when adding member to database", async () => {
       await MemberModel.deleteMember(201);
       const res = await request(server)
         .post("/members")
         .send({ id: 201, name: "jo" })
         .set("Content-Type", "application/json");
       expect(res.status).toBe(400);
+      expect(res.body).toHaveProperty("name", "ValidationError");
     });
 
     it("should successfully add member to database", async () => {
