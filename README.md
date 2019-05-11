@@ -1,21 +1,56 @@
-# doshii-code-challenge
+# Doshii Code Challenge
 
-# Dev DB
+## Questionnaire
 
-"CREATE DATABASE IF NOT EXISTS doshii"
+- Questionnaire answers have been included inside `/Questionnaire/README.md`
 
-"CREATE TABLE IF NOT EXISTS member (id INT NOT NULL PRIMARY KEY,member_name VARCHAR(200))"
+## Web Application
 
-"CREATE TABLE IF NOT EXISTS reward (id INT NOT NULL PRIMARY KEY,reward_name VARCHAR(200))"
+- Technologies and versions used:
+  `NPM - v6.4.1`
+  `Node - v10.15.0`
+  `MySQL - 5.7.21`
 
-"CREATE TABLE IF NOT EXISTS member_reward (id int NOT NULL AUTO_INCREMENT,member_id INT NOT NULL,reward_id INT NOT NULL,PRIMARY KEY (id),FOREIGN KEY (member_id) REFERENCES member(id),FOREIGN KEY (reward_id) REFERENCES reward(id))"
+- Setup process:
+  - Install above mentioned dependencies.
+  - use `npm install` to install project dependencies.
+  - create dev and test databases, a dump file is include `/db_dumps/schema.sql` to execute script.
+  - schema.sql will create 2 databases, `doshii` for dev and `doshii_test` for test.
+  - config folder includes dev config `/config/default.json` and test config `/config/test.json`.
+  - you can change the config based on env for host, username, and password
+  - app config is set from npm scripts in `package.json` file.
+  - use `npm start` to start the application on port `3006`.
+  - use `npm test` to execute test cases that includes both unit tests and integration tests.
+  - use `npm test:coverage` to get the code coverage, this will create a coverage folder inside project.
 
-# Test DB
+## A Small Web Application
 
-"CREATE DATABASE IF NOT EXISTS doshii_test"
+Create a simple application for member rewards.
 
-"CREATE TABLE IF NOT EXISTS member (id INT NOT NULL PRIMARY KEY,member_name VARCHAR(200))"
+Endpoints and logic should be created for:
 
-"CREATE TABLE IF NOT EXISTS reward (id INT NOT NULL PRIMARY KEY,reward_name VARCHAR(200))"
+- Creating a member and reward
+- Associate a reward to a member
+- Retrieve a member and their rewards
+- Delete a member and reward
 
-"CREATE TABLE IF NOT EXISTS member_reward (id int NOT NULL AUTO_INCREMENT,member_id INT NOT NULL,reward_id INT NOT NULL,PRIMARY KEY (id),FOREIGN KEY (member_id) REFERENCES member(id),FOREIGN KEY (reward_id) REFERENCES reward(id))"
+#### Please complete using the following technologies
+
+- NodeJS (ES6) - preferably using version 8 or above
+- Any SQL flavour
+
+#### As part of your solution please specify any:
+
+- Software requirements
+- Installation instructions
+- Assumptions made about the requirements of the task
+- Anything you believe is important but out of scope or unnecessary
+
+#### We value
+
+- Good application design
+- Clear and readable code
+- Tests and testable code
+- Decent performance
+
+We would prefer if you created a publicly available repository for the completed work.

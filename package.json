@@ -1,11 +1,10 @@
 {
-  "name": "api-server",
+  "name": "doshii-code-challenge",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
     "server": "babel-node ./src/bin/www",
-    "dev": "SET NODE_ENV=development&& npm-run-all server",
+    "start": "SET NODE_ENV=development&& npm-run-all server",
     "watch": "nodemon",
     "test": "SET NODE_ENV=test&& jest --verbose",
     "test:coverage": "SET NODE_ENV=test&& jest --coverage"
