@@ -38,7 +38,7 @@
   - Used `mysql` driver to connect to database.
   - Used `npm-run-all` cli tool to run multiple npm-scripts in parallel.
 
-- Application access:
+- **Application access** :
 
   - Base url for application `http://localhost:3006`
 
@@ -66,7 +66,7 @@
       ex: { id: 201, name: "johnny" }
       ```
 
-      - **DELETE** :
+    - **DELETE** :
 
       1. `/members/:id` - to delete an existing member
 
@@ -109,34 +109,9 @@
       ex: http://localhost:3006/members/100/rewards/500
       ```
 
-## A Small Web Application
+  - **Note** :
 
-Create a simple application for member rewards.
-
-Endpoints and logic should be created for:
-
-- Creating a member and reward
-- Associate a reward to a member
-- Retrieve a member and their rewards
-- Delete a member and reward
-
-#### Please complete using the following technologies
-
-- NodeJS (ES6) - preferably using version 8 or above
-- Any SQL flavour
-
-#### As part of your solution please specify any:
-
-- Software requirements
-- Installation instructions
-- Assumptions made about the requirements of the task
-- Anything you believe is important but out of scope or unnecessary
-
-#### We value
-
-- Good application design
-- Clear and readable code
-- Tests and testable code
-- Decent performance
-
-We would prefer if you created a publicly available repository for the completed work.
+    - To check a member and their reward you must first add reward to member.
+    - Use `/members/:id` endpoint to check member and their rewards.
+    - If a member is deleted then his associated rewards will also be deleted but not the reward itself.
+    - If a reward is deleted then all its associated member data is also delete but not the members.
