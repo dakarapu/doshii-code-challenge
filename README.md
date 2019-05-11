@@ -27,11 +27,54 @@
 
 - Application details:
 
-  - Used `ES6` standard for application implementation.
+  - Maintained `ES6` standard for application implementation.
   - Used `Express` framework for building APIs and `Babel` for to support ES6.
   - Used `Nodemon` to detect code changes and automatic app restart.
   - Used `Jest` framework for testing the application and code coverage.
   - Used `SuperTest` library for testing the HTTP request.
+  - Used `@hapi/joi` library for object schema validation.
+  - Used `morgan` library for HHTP request logging on console.
+  - Used `config` library for application configuration control in different environments.
+  - Used `mysql` driver to connect to database.
+  - Used `npm-run-all` cli tool to run multiple npm-scripts in parallel.
+
+- Application access:
+
+  - Base url for application `http://localhost:3006`
+  - Member endpoints:
+
+    - GET :
+      `/members` - for getting all members
+      ```
+      ex:  http://localhost:3006/members
+      ```
+      `/members/id` - for getting a member with ID
+      ```
+      ex: http://localhost:3006/members/100
+      ```
+    - POST :
+      `/members` - to create new member in database with request body as JSON object.
+      req body details: `{id:number, name:string}` both are required with name 3 minimum characters long.
+      ex:`{ id: 201, name: "johnny" }`
+    - DELETE :
+      `/members/id` - to delete an existing member
+
+  - Reward endpoints:
+    - GET :
+      `/rewards` - for getting all rewards
+      ```
+      ex:  http://localhost:3006/rewards
+      ```
+      `/rewards/id` - for getting a reward with ID
+      ```
+      ex: http://localhost:3006/rewards/500
+      ```
+    - POST :
+      `/rewards` - to create new reward in database with request body as JSON object.
+      req body details: `{id:number, name:string}` both are required with name 3 minimum characters long.
+      ex:`{ id: 500, name: "REWARD_1" }`
+    - DELETE :
+      `/rewards/id` - to delete an existing reward
 
 ## A Small Web Application
 
